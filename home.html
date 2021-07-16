@@ -1,0 +1,98 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="myDIV" class="header">
+<h2 style="margin:5px">My To Do List</h2>
+<br>
+<input type="text" id="myInput" class="input" placeholder="Title...">
+<span onclick="newElement()" class="addBtn">Add</span>
+</div>
+<h1 style="text-align: center;">“Life should not be reduced to a to do list”</h1>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+    <ul id="myUL">
+    <li>Evening Meeting</li>
+  </ul>
+<br>
+</div>
+<div class="col-sm-4" >
+<img src="img.jpg" width="250" height="200"  class="center" >
+<br>
+</br>
+</div>
+<div class="col-sm-4" id="d1" style="height: 200;">
+<br>
+  <p>“Complaining will not change things in your life; the only action will. Make a list of all you need to do to change what doesn’t work in your life and, little by little, begin making those changes.”</p>
+  <p style="padding-left: 5px 5px 5px 5px;"><i><b>— Susan Jeffers</b></i></p></div></div>
+</div></div>
+<script>
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+
+}
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+ 
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for ( var i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
